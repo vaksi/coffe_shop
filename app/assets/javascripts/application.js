@@ -10,7 +10,12 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
+//= require smoothscroll
 //= require jquery
 //= require jquery_ujs
+//= require bootstrap-sprockets
 //= require turbolinks
+//= require custom-scripts.js
+//= require jquery.easing.1.3.js
+//= require modernizr.custom.js
 //= require_tree .
