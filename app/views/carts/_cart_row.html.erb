@@ -27,7 +27,7 @@
       <br>
       <form action="/order_condiments" method="post">
         <input name="utf8" type="hidden" value="&#x2713;">
-        <input name="authenticity_token" type="hidden" value="x37DrAAwyIIb7s+w2+AdoCR8cAJIpQhIetKRrPgG5VA=" display="none">
+        <input name="authenticity_token" type="hidden" value="l1DhOqcuIrpzDozD+CqxDsAnnc53YQ5nme3NK7n/ZvTsXEY96NuxsFcG0O3q4Qag+HxplT5ROn2ctZq1WzvuPw==" display="none">
         <div class="input-group">
           <select id="condiments" name="order_condiment[condiment_id]" class="form-control">
             <% Condiment.where(category_id: menu.category_id).each do |condiment|%>
