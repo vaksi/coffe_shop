@@ -1,28 +1,29 @@
 == README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This projects is a simple online ordering apps for a coffee shop.
+### Web app features ###
+  * UML refer to Admin and current_user.
+  * You can order coffees or many menus on this web.
+  * Admin can see all order And sales total or omests total.
+  * the order includes cart.
+  * you can which size such us tall, grande or venti on your orders.
+  * you can which condiments such us creamer, choco, or gels on your orders
+  * Admin can CRUD menu, size, type, condiments
 
-Things you may want to cover:
+### System Requitments ###
+  * gem version => 2.5.1
+  * Ruby version => 2.3.1
+  * Rails version => 4.6.2
+  * PostgreeSQL database
 
-* Ruby version
+### Configuration ###
+  * Pull this my repository
+  * $ cd <project_repository> 
+  * $ bundle install
+ 
+### Database creation ###
+  * $ bundle exec rake db:create
+  * $ bundle exec rake db:migrate
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+### How to run the test suite ###
+  * $ rails server  
