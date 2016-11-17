@@ -14,7 +14,7 @@
         <tbody>
         <% @categories.each do |category| %>
             <tr>
-              <%= form_for category, url: admin_category_path(category.id), method: :put, remote: true do |f|  %>
+              <%= form_for category, url: admin_category_path(category.id), remote: true do |f|  %>
               <td><%= category.id %></td>
               <td><%= f.text_field :name %></td>
               <td><%=f.submit 'update' %><%= link_to 'delete', admin_category_path(category) %></td>
@@ -24,7 +24,7 @@
         <% end %>
         </tbody>
         <tfoot>
-        <%= form_for @category, url: admin_categories_path, method: :post, remote: true do |f|  %>
+        <%= form_for @category, url: admin_categories_path, html: {method: :post}, remote: true do |f|  %>
             <tr>
               <td><%= f.text_field :name, placeholder: 'category name...' %></td>
               <td><%= f.submit 'add' %></td>
