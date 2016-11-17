@@ -17,7 +17,7 @@
         <tbody>
         <% @condiments.each do |condiment| %>
             <tr>
-              <%= form_for condiment, url: admin_condiment_path(condiment.id), method: :put, remote: true do |f|  %>
+              <%= form_for condiment, url: admin_condiment_path(condiment.id), method: :put do |f|  %>
                   <td><%= condiment.id %></td>
                   <td><%= f.text_field :name %></td>
                   <td><%= f.text_area :description %></td>
@@ -30,7 +30,7 @@
         <% end %>
         </tbody>
         <tfoot>
-        <%= form_for @condiment, url: admin_condiments_path, method: :post, remote: true do |f|  %>
+        <%= form_for @condiment, url: admin_condiments_path, method: :post do |f|  %>
             <tr>
               <td></td>
               <td><%= f.text_field :name, placeholder: 'condiment name...' %></td>

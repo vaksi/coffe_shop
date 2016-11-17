@@ -25,7 +25,7 @@
       <div class="col-md-6">
         <h3>Order Detail</h3>
 
-        <%= form_for @order, url: admin_order_path(@order.id), method: :put, remote: true do |f| %>
+        <%= form_for @order, url: admin_order_path(@order.id), method: :put do |f| %>
             <fieldset>
               <%= f.hidden_field :status, value: 'success'%><br>
               <%= f.hidden_field :payment_state, value: 'paid'%><br>

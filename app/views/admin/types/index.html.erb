@@ -14,7 +14,7 @@
         <tbody>
         <% @types.each do |type| %>
             <tr>
-              <%= form_for type, url: admin_type_path(type.id), method: :put, remote: true do |f|  %>
+              <%= form_for type, url: admin_type_path(type.id), method: :put do |f|  %>
                   <td><%= type.id %></td>
                   <td><%= f.text_field :name %></td>
                   <td><%= f.collection_select(:category_id, Category.all, :id, :name, :required => true ) %></td>
@@ -25,7 +25,7 @@
         <% end %>
         </tbody>
         <tfoot>
-        <%= form_for @type, url: admin_types_path, method: :post, remote: true do |f|  %>
+        <%= form_for @type, url: admin_types_path, method: :post do |f|  %>
             <tr>
               <td></td>
               <td><%= f.text_field :name, placeholder: 'menu name...' %></td>
