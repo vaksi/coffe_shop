@@ -1,7 +1,7 @@
 == README
 
 This projects is a simple online ordering apps for a coffee shop.
-The demos project at [coffee shop simple order](https://vaksipranata.herokuapp.com/) https://vaksipranata.herokuapp.com/ 
+The demos project at https://vaksipranata.herokuapp.com 
 == Web app features 
   * UML refer to Admin and current_user.
   * You can order coffees or many menus on this web.
