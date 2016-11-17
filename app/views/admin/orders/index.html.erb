@@ -1,0 +1,38 @@
+<div id="layout">
+  <%= render 'admin/shared/nav_bar'%>
+  <div id="main">
+    <div class="content">
+      <h1>All Orders</h1>
+      <h1 class="text-right">Total Sales : <%= Order.where(payment_state: 'paid').sum(:payment_total) %></h1>
+      <table class="table table-condensed">
+        <thead>
+          <tr>
+            <td>Order Date</td>
+            <td>Take Away At</td>
+            <td>Order Id</td>
+            <td>Order Status</td>
+            <td>Payment Status</td>
+            <td>Customer Email</td>
+            <td>Payment Total</td>
+            <td>Action</td>
+          </tr>
+        </thead>
+        <tbody>
+          <% @orders.each do |order| %>
+          <tr>
+            <td><%= order.created_at%></td>
+            <td><%= order.take_away_at%></td>
+            <td><%= order.id%></td>
+            <td><%= order.status %></td>
+            <td><%= order.payment_state%></td>
+            <td><%= order.customer_email %></td>
+            <td><%= order.payment_total %></td>
+            <td><%= link_to 'detail', admin_order_path(order) %></td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+
+    </div>
+  </div>
+</div>

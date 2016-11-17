@@ -1,0 +1,38 @@
+<%= render "shared/header" %>
+<section id="menus" class="container-fluid bg-blue margin-top-50 padding-top-50 padding-bottom-100">
+  <div class="container">
+    <h3 class="text-center font-header-regular font-white margin-top-0">Which Menus</h3>
+    <div class="menus-filter btn-filter-green">
+      <ul class="simplefilter">
+        <li class="active" data-filter="all">All</li>
+        <% Category.all.each do |category| %>
+            <li data-filter="<%= category.id %>"><%= category.name %></li>
+        <% end %>
+      </ul>
+    </div>
+    <div class="filtr-container flex-container-normal margin-top-25" style="padding-right: 25px;">
+      <% @menus.each do |menu|%>
+          <a href="/menus/<%=menu.id%>" class="filtr-item col-xs-12 col-sm-4" data-category="<%= menu.category_id %>">
+            <div class="menu-card-flex flex-direction-column">
+              <img src=<%= menu.image %> class="img-responsive">
+              <hr>
+              <div class="title-flex">
+                <div class="head"><%= menu.name %></div>
+                <!--<div class="campaign-status">
+                  <div class="campaign-supporter">
+                    <i class="fa fa-users" aria-hidden="true"></i>&nbsp;1384
+                  </div>
+                  <div class="campaign-time">
+                    <i class="fa fa-clock-o" aria-hidden="true"></i>&nbsp;20 day(s)
+                    &lt;!&ndash; kalau kurang dari 24 jam
+                    <i class="fa fa-clock-o" aria-hidden="true"></i>&nbsp;8 hour(s)
+                    &ndash;&gt;
+                  </div>
+                </div>-->
+              </div>
+            </div>
+          </a>
+      <% end %>
+    </div>
+  </div>
+</section>

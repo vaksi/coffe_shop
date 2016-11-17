@@ -1,0 +1,65 @@
+<div class="well">
+
+  <div class="row">
+    <div class="col-xs-4">
+      <h4><%= menu.name %></h4>
+    </div>
+    <div class="col-xs-4">
+      <label for="condiments">Condiments</label>
+      <% OrderCondiment.where(order_item_id: order_item.id).each do |order_condiment|%>
+          <form action="/order_condiments/<%= order_condiment.id %>" method="post">
+            <input name="utf8" type="hidden" value="&#x2713;">
+            <input name="authenticity_token" type="hidden" value="x37DrAAwyIIb7s+w2+AdoCR8cAJIpQhIetKRrPgG5VA=" display="none">
+            <div class="input-group">
+              <select id="condiments" name="order_condiment[condiment_id]" class="form-control">
+                <% Condiment.where(category_id: menu.category_id).each do |condiment|%>
+                    <option value="<%= condiment.id %>"><%= condiment.name %> <i><%= number_to_currency(condiment.fee, locale: :en) %></i></option>
+                <% end %>
+              </select>
+              <input name="order_condiment[order_item_id]" type="hidden" value="<%= order_item.id %>">
+              <span class="input-group-btn">
+                <button class="btn btn-default" type="submit">Update</button>
+                <%= link_to "Delete", order_condiment_path(order_condiment.id), { data: { confirm: "Are you sure you wish to delete the product '#{order_condiment.condiment.name}' from your cart?" }, method: :delete, remote: true, class: "btn btn-danger" } %>
+              </span>
+            </div><!-- /input-group -->
+          </form>
+      <% end %>
+      <br>
+      <form action="/order_condiments" method="post">
+        <input name="utf8" type="hidden" value="&#x2713;">
+        <input name="authenticity_token" type="hidden" value="x37DrAAwyIIb7s+w2+AdoCR8cAJIpQhIetKRrPgG5VA=" display="none">
+        <div class="input-group">
+          <select id="condiments" name="order_condiment[condiment_id]" class="form-control">
+            <% Condiment.where(category_id: menu.category_id).each do |condiment|%>
+                <option value="<%= condiment.id %>"><%= condiment.name %> <i><%= number_to_currency(condiment.fee, locale: :en) %></i></option>
+            <% end %>
+          </select>
+          <input name="order_condiment[order_item_id]" type="hidden" value="<%= order_item.id %>">
+          <span class="input-group-btn">
+            <button class="btn btn-default" type="submit">Add</button>
+          </span>
+        </div><!-- /input-group -->
+      </form>
+    </div>
+    <div class="col-xs-4">
+
+      <%= form_for order_item, remote: true do |f| %>
+          <h4 class="text-right">Unit Price: <span style="color: green"><%= number_to_currency(order_item.price.to_s.to_d, locale: :en) %></span></h4>
+
+          <div class="row">
+            <div class="col-xs-4">
+              <%= f.number_field :quantity, value: order_item.quantity.to_i, class: "form-control", min: 1 %>
+              <%= f.hidden_field :menu_id, value: menu.id %>
+            </div>
+            <div class="col-xs-8 text-right">
+              <div class="btn-group">
+                <%= f.submit "Update Quantity", class: "btn btn-primary" %>
+                <%= link_to "Delete", order_item, { data: { confirm: "Are you sure you wish to delete the product '#{order_item.menu.name}' from your cart?" }, method: :delete, remote: true, class: "btn btn-danger" } %>
+              </div>
+            </div>
+          </div>
+          <h4 class="text-right">Total Price: <span style="color: green"><%= order_item.price_total %></span></h4>
+      <% end %>
+    </div>
+  </div>
+</div>

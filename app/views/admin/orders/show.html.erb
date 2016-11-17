@@ -1,0 +1,52 @@
+<div id="main">
+  <%= render 'admin/shared/nav_bar'%>
+  <div class="container">
+    <div class="row white">
+      <div class="col-md-4">
+        <h3>Cart</h3>
+        <ul class="list-group">
+          <% @order.order_items.each do |item| %>
+              <li class="list-group-item">
+                <span class="badge"><%= +1 %></span>
+                <h4><%= item.menu.name %></h4>
+                <p>
+                  size : <%= item.size.name %> <br>
+                  type : <%= item.type.name %> <br>
+                  condiments : <%= item.order_condiments.collect { |oc| oc.condiment.name } %>
+                <h5 class="text-right">Total : <%= number_to_currency item.price_total%></h5>
+                </p>
+              </li>
+          <% end %>
+          <li class="list-group-item">
+            <h3 class="text-right">Total : <%= @order.payment_total %></h3>
+          </li>
+        </ul>
+      </div>
+      <div class="col-md-6">
+        <h3>Order Detail</h3>
+
+        <%= form_for @order, url: admin_order_path(@order.id), method: :put, remote: true do |f| %>
+            <fieldset>
+              <%= f.hidden_field :status, value: 'success'%><br>
+              <%= f.hidden_field :payment_state, value: 'paid'%><br>
+              <%= f.hidden_field :payment_total, value: @order.payment_total%><br>
+              <label>Customer Name : </label>
+              <%= f.text_field :customer_name, value: @order.customer_name, require: 'true'%><br>
+              <label>Customer Email : </label>
+              <%= f.email_field :customer_email, value: @order.customer_email, require: 'true' %><br>
+              <label>Customer Phone : </label>
+              <%= f.text_field :customer_phone, value: @order.customer_phone, require: 'true' %><br>
+              <label>Take Away At : </label>
+              <%= f.datetime_select :take_away_at, value: @order.take_away_at, require: 'true' %><br>
+              <label>Payment Method</label>
+              <%= f.select :payment_method, ['cash']%><br>
+              <a href="/orders" class="pure-button pure-button-danger">Cancel</a>
+              <button type="submit" class="pure-button pure-button-primary">Approve</button>
+
+            </fieldset>
+        <% end %>
+      </div>
+    </div>
+    <!-- row -->
+  </div>
+</div>

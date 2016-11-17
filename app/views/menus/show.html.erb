@@ -1,0 +1,45 @@
+<%= render 'shared/header' %>
+<div id="about" name="about">
+  <div class="container">
+    <div class="row white">
+      <div class="col-md-6">
+        <img src=<%= @menu.image %> class="img-responsive">
+      </div>
+      <div class="col-md-6">
+        <h3><%= t(@menu.name) %></h3>
+        <p><%= t(@menu.description)%></p>
+        <form class="pure-form pure-form-stacked" action="/order_items" method="post" remote="true">
+          <input name="utf8" type="hidden" value="&#x2713;">
+          <input name="authenticity_token" type="hidden" value="x37DrAAwyIIb7s+w2+AdoCR8cAJIpQhIetKRrPgG5VA=" display="none">
+          <fieldset>
+            <legend>Order</legend>
+
+            <label for="type">Type</label>
+            <select id="type" name="order_item[type_id]">
+              <% Type.where(category: @menu.category_id).each do |type|%>
+                <option value="<%= type.id %>"><%= type.name %></option>
+              <% end %>
+            </select>
+
+            <label for="size">Size</label>
+            <% price_id = 0%>
+            <select id="size" name="order_item[size_id]">
+              <% Size.where(category: @menu.category_id).each do |size|%>
+                  <% price_id = Price.find_by(menu_id: @menu.id, size_id: size.id).id %>
+                  <option value="<%= size.id %>"><%= size.name %> <i><%= number_to_currency(Price.find_by(menu_id: @menu.id, size_id: size.id).fee, locale: :en) %></i></option>
+              <% end %>
+            </select>
+            <input name="order_item[price_id]" type="hidden" value="<%= price_id %>">
+            <input name="order_item[menu_id]" type="hidden" value="<%= @menu.id %>">
+            <label for="quantity">Quantity</label>
+            <input type="number" name="order_item[quantity]" />
+            <br>
+            <button type="submit" class="pure-button pure-button-primary">Order</button>
+          </fieldset>
+        </form>
+      </div>
+    </div>
+    <!-- row -->
+  </div>
+</div>
+<%= render 'shared/footer' %>

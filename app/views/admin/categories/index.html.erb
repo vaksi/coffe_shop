@@ -1,0 +1,38 @@
+<div id="layout">
+  <%= render 'admin/shared/nav_bar'%>
+  <div id="main">
+    <div class="content">
+      <h1>Categories</h1>
+      <table class="table table-condensed">
+        <thead>
+        <tr>
+          <td>id</td>
+          <td>Category Name</td>
+          <td>Action</td>
+        </tr>
+        </thead>
+        <tbody>
+        <% @categories.each do |category| %>
+            <tr>
+              <%= form_for category, url: admin_category_path(category.id), method: :put, remote: true do |f|  %>
+              <td><%= category.id %></td>
+              <td><%= f.text_field :name %></td>
+              <td><%=f.submit 'update' %><%= link_to 'delete', admin_category_path(category) %></td>
+              <% end %>
+            </tr>
+
+        <% end %>
+        </tbody>
+        <tfoot>
+        <%= form_for @category, url: admin_categories_path, method: :post, remote: true do |f|  %>
+            <tr>
+              <td><%= f.text_field :name, placeholder: 'category name...' %></td>
+              <td><%= f.submit 'add' %></td>
+            </tr>
+        <% end %>
+        </tfoot>
+      </table>
+
+    </div>
+  </div>
+</div>

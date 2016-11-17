@@ -1,6 +1,27 @@
 Rails.application.routes.draw do
+
+  namespace :admin do
+    root :to => 'orders#index'
+    resources :orders, only: [:index, :update, :show]
+    resources :types
+    resources :categories
+    resources :sizes
+    resources :condiments
+    resources :menus
+    resources :prices
+  end
+
   root :to => 'homes#index'
   get '/info' => 'homes#info'
+
+  resources :menus
+  resource :cart, only: [:show]
+  resources :order_items, only: [:create, :update, :destroy]
+  resources :order_condiments, only: [:create, :update, :destroy]
+  post '/order_condiments/:id' => "order_condiments#update"
+
+  get '/orders/checkout' => 'orders#checkout'
+  resources :orders, only: [:update]
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

@@ -1,0 +1,50 @@
+<div id="layout">
+  <%= render 'admin/shared/nav_bar'%>
+  <div id="main">
+    <div class="content">
+      <h1>Condiments</h1>
+      <table class="table table-condensed">
+        <thead>
+        <tr>
+          <td>id</td>
+          <td>Condiment Name</td>
+          <td>Description</td>
+          <td>Category</td>
+          <td>Type</td>
+          <td>Fee</td>
+        </tr>
+        </thead>
+        <tbody>
+        <% @condiments.each do |condiment| %>
+            <tr>
+              <%= form_for condiment, url: admin_condiment_path(condiment.id), method: :put, remote: true do |f|  %>
+                  <td><%= condiment.id %></td>
+                  <td><%= f.text_field :name %></td>
+                  <td><%= f.text_area :description %></td>
+                  <td><%= f.collection_select(:category_id, Category.all, :id, :name, :required => true ) %></td>
+                  <td><%= f.collection_select(:type_id, Type.all, :id, :name, :required => true ) %></td>
+                  <td><%= f.text_field :fee %></td>
+                  <td><%=f.submit 'update' %><%= link_to 'delete', admin_condiment_path(condiment) %></td>
+              <% end %>
+            </tr>
+        <% end %>
+        </tbody>
+        <tfoot>
+        <%= form_for @condiment, url: admin_condiments_path, method: :post, remote: true do |f|  %>
+            <tr>
+              <td></td>
+              <td><%= f.text_field :name, placeholder: 'condiment name...' %></td>
+              <td><%= f.text_area :description %></td>
+              <td><%= f.collection_select(:category_id, Category.all, :id, :name, :required => true ) %></td>
+              <td><%= f.collection_select(:type_id, Type.all, :id, :name, :required => true ) %></td>
+              <td><%= f.text_field :fee %></td>
+              <td><%= f.submit 'add' %></td>
+            </tr>
+        <% end %>
+        </tfoot>
+      </table>
+
+    </div>
+  </div>
+</div>
+

@@ -1,0 +1,44 @@
+<div id="layout">
+  <%= render 'admin/shared/nav_bar'%>
+  <div id="main">
+    <div class="content">
+      <h1>Prices</h1>
+      <table class="table table-condensed">
+        <thead>
+        <tr>
+          <td>id</td>
+          <td>Menu</td>
+          <td>Size</td>
+          <td>Fee</td>
+        </tr>
+        </thead>
+        <tbody>
+        <% @prices.each do |price| %>
+            <tr>
+              <%= form_for price, url: admin_price_path(price.id), method: :put, remote: true do |f|  %>
+                  <td><%= price.id %></td>
+                  <td><%= f.collection_select(:menu_id, Menu.all, :id, :name, :required => true ) %></td>
+                  <td><%= f.collection_select(:size_id, Size.all, :id, :name, :required => true ) %></td>
+                  <td><%= f.text_field :fee %></td>
+                  <td><%=f.submit 'update' %><%= link_to 'delete', admin_price_path(price) %></td>
+              <% end %>
+            </tr>
+
+        <% end %>
+        </tbody>
+        <tfoot>
+        <%= form_for @price, url: admin_prices_path, method: :post, remote: true do |f|  %>
+            <tr>
+              <td></td>
+              <td><%= f.collection_select(:menu_id, Menu.all, :id, :name, :required => true ) %></td>
+              <td><%= f.collection_select(:size_id, Size.all, :id, :name, :required => true ) %></td>
+              <td><%= f.text_field :fee %></td>
+              <td><%= f.submit 'add' %></td>
+            </tr>
+        <% end %>
+        </tfoot>
+      </table>
+
+    </div>
+  </div>
+</div>

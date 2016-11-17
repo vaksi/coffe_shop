@@ -3,7 +3,7 @@
 <head>
   <title>CoffeShop</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-
+  <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/pure-min.css">
   <%= csrf_meta_tags %>
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!--[if lt IE 9]>
@@ -14,6 +14,6 @@
 <body>
 
 <%= yield %>
-<%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
 </body>
+<%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
 </html>

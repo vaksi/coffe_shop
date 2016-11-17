@@ -1,9 +1,10 @@
 @import url(http://fonts.googleapis.com/css?family=Open+Sans:400,700,800,600);
 @import url(http://fonts.googleapis.com/css?family=Raleway:600,700,800);
 @import "animate-custom";
-
+@import "menus";
 html, button, input, select, textarea {
 	color: #222;
+    box-sizing: border-box;
 }
 ::-moz-selection {
  background: #f2c2c9;
@@ -38,6 +39,22 @@ img {
  
 textarea {
 	resize: vertical;
+}
+.btn-filter-green {
+  li, .simplefilter li, .multifilter li, .sortandshuffle li {
+    background-color: rgba(57, 181, 74, 0.5);
+    font-family: Sans-Serif;
+    border-radius: 2px;
+    color: white;
+    cursor: pointer;
+    display: inline-block;
+    text-transform: uppercase;
+    padding: 1rem 2rem;
+  }
+
+  li.active, .simplefilter li.active {
+    background-color: #ffbf00;
+  }
 }
 /* ===============================================
    General styles

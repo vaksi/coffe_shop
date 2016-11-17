@@ -1,0 +1,41 @@
+<div id="layout">
+  <%= render 'admin/shared/nav_bar'%>
+  <div id="main">
+    <div class="content">
+      <h1>Sizes</h1>
+      <table class="table table-condensed">
+        <thead>
+        <tr>
+          <td>id</td>
+          <td>Size Name</td>
+          <td>Category</td>
+        </tr>
+        </thead>
+        <tbody>
+        <% @sizes.each do |size| %>
+            <tr>
+              <%= form_for size, url: admin_size_path(size.id), method: :put, remote: true do |f|  %>
+                  <td><%= size.id %></td>
+                  <td><%= f.text_field :name %></td>
+                  <td><%= f.collection_select(:category_id, Category.all, :id, :name, :required => true ) %></td>
+                  <td><%=f.submit 'update' %><%= link_to 'delete', admin_size_path(size) %></td>
+              <% end %>
+            </tr>
+        <% end %>
+        </tbody>
+        <tfoot>
+        <%= form_for @size, url: admin_sizes_path, method: :post, remote: true do |f|  %>
+            <tr>
+              <td></td>
+              <td><%= f.text_field :name, placeholder: 'sizes name...' %></td>
+              <td><%= f.collection_select(:category_id, Category.all, :id, :name, :required => true)  %></td>
+              <td><%= f.submit 'add' %></td>
+            </tr>
+        <% end %>
+        </tfoot>
+      </table>
+
+    </div>
+  </div>
+</div>
+

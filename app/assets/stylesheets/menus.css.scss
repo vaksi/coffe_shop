@@ -1,0 +1,123 @@
+#menus {
+  background: #FFFFFF;
+  padding: 100px 0;
+  text-align: center;
+
+  h2 {
+    vertical-align: middle;
+    text-align: center;
+  }
+
+  .flex-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: flex-start;
+  }
+
+  .flex-container-normal {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  .flex-even {
+    .menu-card-flex img, .menu-card-flex .title-flex {
+      min-width: 100px;
+      max-width: 280px;
+    }
+  }
+
+  .flex-odd {
+    .menu-card-flex img, .menu-card-flex .title-flex {
+      max-width: 180px;
+    }
+  }
+
+  .flex-campaign-4 {
+    .menu-card-flex img, .menu-card-flex .title-flex {
+      min-width: 100px;
+      max-width: 300px;
+    }
+  }
+
+  a {
+    color: #ebebeb;
+    text-decoration: none;
+    display: flex;
+
+    &:hover, &:active {
+
+      .head, .head-small {
+        color: #F27E00 !important;
+      }
+
+      img {
+        color: #e89a2f;
+        filter:opacity(80%);
+      }
+    }
+  }
+
+  .menus-card-flex {
+    margin: 12px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: stretch;
+    background: #e89a2f;
+
+    img {
+      order: 1;
+    }
+
+    .title-flex {
+      order: 3;
+
+      .head {
+        font-family: 'Open Sans', sans-serif;
+        color: #ebebeb;
+        margin: 15px;
+        flex-wrap: wrap;
+        line-height: 0.9;
+        //@include responsive-font(2.5vw, 25px, 50px);
+      }
+
+      .head-small {
+        font-family: 'Open Sans', sans-serif;
+        color: #ebebeb;
+        margin: 15px;
+        flex-wrap: wrap;
+        line-height: 0.9;
+        //@include responsive-font(1.5vw, 15px, 40px);
+      }
+    }
+
+    blockquote {
+      align-self: stretch;
+      order: -2;
+      background: url('splatter-blue.svg') left bottom;
+      background-size: 50%;
+      font-family: Sans-Serif;
+      font-size: 10pt;
+      color: #B00100;
+      border-left: 0;
+      margin: 0;
+    }
+  }
+
+  .menus-filter {
+    display: block;
+    margin: 25px auto 0 auto;
+    text-align: center;
+
+    ul {
+      padding-left: 0;
+
+      li {
+        margin: 5px 2px;
+      }
+    }
+  }
+}

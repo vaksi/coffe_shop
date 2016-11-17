@@ -1,0 +1,41 @@
+<div id="layout">
+  <%= render 'admin/shared/nav_bar'%>
+  <div id="main">
+    <div class="content">
+      <h1>Types</h1>
+      <table class="table table-condensed">
+        <thead>
+        <tr>
+          <td>Id</td>
+          <td>Type Name</td>
+          <td>Category</td>
+        </tr>
+        </thead>
+        <tbody>
+        <% @types.each do |type| %>
+            <tr>
+              <%= form_for type, url: admin_type_path(type.id), method: :put, remote: true do |f|  %>
+                  <td><%= type.id %></td>
+                  <td><%= f.text_field :name %></td>
+                  <td><%= f.collection_select(:category_id, Category.all, :id, :name, :required => true ) %></td>
+                  <td><%=f.submit 'update' %><%= link_to 'delete', admin_type_path(type) %></td>
+              <% end %>
+            </tr>
+
+        <% end %>
+        </tbody>
+        <tfoot>
+        <%= form_for @type, url: admin_types_path, method: :post, remote: true do |f|  %>
+            <tr>
+              <td></td>
+              <td><%= f.text_field :name, placeholder: 'menu name...' %></td>
+              <td><%= f.collection_select(:category_id, Category.all, :id, :name, :required => true)  %></td>
+              <td><%= f.submit 'add' %></td>
+            </tr>
+        <% end %>
+        </tfoot>
+      </table>
+
+    </div>
+  </div>
+</div>
