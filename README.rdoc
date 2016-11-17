@@ -1,7 +1,7 @@
 == README
 
 This projects is a simple online ordering apps for a coffee shop.
-### Web app features 
+== Web app features 
   * UML refer to Admin and current_user.
   * You can order coffees or many menus on this web.
   * Admin can see all order And sales total or omests total.
@@ -10,20 +10,20 @@ This projects is a simple online ordering apps for a coffee shop.
   * you can which condiments such us creamer, choco, or gels on your orders
   * Admin can CRUD menu, size, type, condiments
 
-### System Requitments 
+== System Requitments 
   * gem version => 2.5.1
   * Ruby version => 2.3.1
   * Rails version => 4.6.2
   * PostgreeSQL database
 
-### Configuration
+== Configuration
   * Pull this my repository
   * $ cd <project_repository> 
   * $ bundle install
  
-### Database creation
+== Database creation
   * $ bundle exec rake db:create
   * $ bundle exec rake db:migrate
 
-### How to run the test suite
+== How to run the test suite
   * $ rails server  
